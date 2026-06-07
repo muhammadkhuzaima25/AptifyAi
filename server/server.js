@@ -20,6 +20,24 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/aptifyai';
 app.use(cors({ origin: CLIENT_URL, credentials: true }));
 app.use(express.json({ limit: '2mb' }));
 
+async function connectDB() {
+  if (mongoose.connection.readyState === 1) return;
+  await mongoose.connect(MONGO_URI, {
+    serverSelectionTimeoutMS: 10000,
+    socketTimeoutMS: 45000,
+  });
+}
+
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error("❌ Database connection failed during request:", err.message);
+    next(err);
+  }
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'AptifyAI API', time: new Date().toISOString() });
 });
@@ -61,8 +79,8 @@ app.get('/api/health/db', async (req, res) => {
       message: err.message,
       hint:
         err.message?.includes('bad auth') || err.message?.includes('authentication failed')
-          ? 'Username or password is wrong, OR the Atlas user does not have permission on this database. Go to Atlas \u2192 Database Access \u2192 edit user \u2192 grant "readWrite" on "aptifyai" database.'
-          : 'Unknown DB error \u2014 check the full message above',
+          ? 'Username or password is wrong, OR the Atlas user does not have permission on this database. Go to Atlas ➔ Database Access ➔ edit user ➔ grant "readWrite" on "aptifyai" database.'
+          : 'Unknown DB error — check the full message above',
     });
   }
 });
@@ -76,68 +94,24 @@ app.use(errorHandler);
 
 const maskUri = (uri) => uri.replace(/(mongodb(?:\+srv)?:\/\/[^:]+:)([^@]+)(@)/, '$1****$3');
 
-async function connectDB() {
-  if (mongoose.connection.readyState === 1) return;
-  await mongoose.connect(MONGO_URI, {
-    serverSelectionTimeoutMS: 10000,
-    socketTimeoutMS: 45000,
-  });
-}
-
-if (process.argv[1]?.includes('server.js')) {
+if (process.env.NODE_ENV !== 'production') {
   console.log('\n========================================');
-  console.log('🚀 Starting AptifyAI server...');
+  console.log('🚀 Starting AptifyAI server locally...');
   console.log('========================================');
-  console.log(`📦 Node       : ${process.version}`);
   console.log(`🔌 Port       : ${PORT}`);
   console.log(`🌐 Client URL : ${CLIENT_URL}`);
-
-  if (!process.env.MONGO_URI) {
-    console.warn('⚠️  MONGO_URI not set in .env — falling back to mongodb://localhost:27017/aptifyai');
-  } else {
-    console.log(`🗄️  Mongo URI  : ${maskUri(MONGO_URI)}`);
-  }
-
-  console.log('\n⏳ Connecting to MongoDB...\n');
+  console.log(`🗄️  Mongo URI  : ${maskUri(MONGO_URI)}`);
 
   connectDB()
     .then(() => {
       console.log('✅ MongoDB: CONNECTED');
-      console.log(`   Host    : ${mongoose.connection.host}`);
-      console.log(`   Database: ${mongoose.connection.name}`);
       app.listen(PORT, () => {
-        console.log('\n========================================');
-        console.log(`✅ Server running → http://localhost:${PORT}`);
-        console.log(`   Health   : http://localhost:${PORT}/api/health`);
-        console.log(`   DB Check : http://localhost:${PORT}/api/health/db`);
-        console.log('========================================\n');
+        console.log(`✅ Server running → http://localhost:${PORT}\n========================================\n`);
       });
     })
     .catch((err) => {
-      console.error('❌ MongoDB: CONNECTION FAILED');
-      console.error('========================================');
-      console.error(`   Error name : ${err.name}`);
-      console.error(`   Message    : ${err.message}`);
-
-      if (err.name === 'MongooseServerSelectionError') {
-        console.error(`   Reason     : ${err.reason?.message || 'unknown'}`);
-        const addrs = err.reason?.servers?.map((s) => s.address).filter(Boolean);
-        if (addrs?.length) console.error(`   Tried      : ${addrs.join(', ')}`);
-        console.error('\n   💡 Common fixes:');
-        console.error('      1. Atlas → Network Access → add your IP (or 0.0.0.0/0 for testing)');
-        console.error('      2. Atlas → Database Access → username/password match MONGO_URI');
-        console.error('      3. DNS issue? try:  nslookup cluster1.wm2qf5c.mongodb.net');
-      } else if (/bad auth|authentication failed/i.test(err.message)) {
-        console.error('\n   💡 Hint: Username or password is wrong.');
-        console.error('      Atlas → Database Access → reset the user password, then update .env');
-      } else if (/ENOTFOUND|EAI_AGAIN|getaddrinfo/i.test(err.message)) {
-        console.error('\n   💡 Hint: DNS cannot resolve the host. Check your internet / DNS / firewall.');
-      } else if (/ECONNREFUSED|timeout/i.test(err.message)) {
-        console.error('\n   💡 Hint: Server not reachable. Check Atlas cluster status (paused / IP blocked).');
-      }
-      console.error('========================================\n');
-      process.exit(1);
+      console.error('❌ MongoDB Connection Error:', err.message);
     });
 }
 
-export { app, connectDB };
+export default app;
