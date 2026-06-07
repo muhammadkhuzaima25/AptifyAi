@@ -9,7 +9,7 @@ import examRoutes from './routes/examRoutes.js';
 import progressRoutes from './routes/progressRoutes.js';
 import { errorHandler, notFoundHandler } from './middleware/errorMiddleware.js';
 
-dns.setServers(['1.1.1.1', '8.8.8.8']);
+try { dns.setServers(['1.1.1.1', '8.8.8.8']); } catch {}
 dotenv.config();
 
 const app = express();
