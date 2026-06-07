@@ -2,7 +2,7 @@
   "name": "aptifyai-server",
   "version": "1.0.0",
   "description": "AptifyAI backend - AI-Powered Aptitude Training",
-  "main": "server.js",
+  "main": "server/server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
