@@ -17,7 +17,18 @@ const PORT = process.env.PORT || 5000;
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/aptifyai';
 
-app.use(cors({ origin: CLIENT_URL, credentials: true }));
+app.use(cors({
+  origin: [
+    'https://aptifyai.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000',
+    CLIENT_URL,
+  ].filter(Boolean),
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use(express.json({ limit: '2mb' }));
 
 async function connectDB() {
