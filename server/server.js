@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import authRoutes from './routes/authRoutes.js';
 import examRoutes from './routes/examRoutes.js';
 import progressRoutes from './routes/progressRoutes.js';
+import rateLimit from 'express-rate-limit';
 import { errorHandler, notFoundHandler } from './middleware/errorMiddleware.js';
 
 try { dns.setServers(['1.1.1.1', '8.8.8.8']); } catch {}
@@ -30,6 +31,34 @@ app.use(cors({
 }));
 
 app.use(express.json({ limit: '2mb' }));
+
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const examLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 10,
+  message: { error: 'Exam generation limit reached. Please try again in an hour.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { error: 'Too many login attempts. Please try again later.' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use('/api', generalLimiter);
+app.use('/api/exam/generate', examLimiter);
+app.use('/api/auth', authLimiter);
 
 async function connectDB() {
   if (mongoose.connection.readyState === 1) return;
