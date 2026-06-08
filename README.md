@@ -40,6 +40,7 @@ Pakistani students preparing for NTS, GAT, MDCAT and CSS/PMS face three core pro
 - **Repeated question banks** — every platform recycles the same MCQs
 - **No feedback** — you see your score but never understand *why* you got it wrong
 - **No progress tracking** — no way to know if you're actually improving session by session
+- **API abuse & unfair usage** — most free tools get abused by bots and heavy users, degrading experience for genuine students. AptifyAI enforces smart rate limiting so every real student gets a fair, consistent experience
 
 AptifyAI solves all three with AI-generated questions, detailed AI explanations, and a full analytics dashboard that tracks your growth arc.
 
@@ -48,7 +49,7 @@ AptifyAI solves all three with AI-generated questions, detailed AI explanations,
 ## 🖥️ UI Preview
 
 <p align="center">
-  <img src="https://aptifyai.vercel.app/preview.png" alt="AptifyAI Dashboard" width="85%" style="border-radius:16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+  <img src="AptifyAi_Dashboard.png" alt="AptifyAI Dashboard" width="85%" style="border-radius:16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
 </p>
 
 ---
