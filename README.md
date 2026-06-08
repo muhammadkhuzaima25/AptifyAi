@@ -49,9 +49,8 @@ AptifyAI solves all three with AI-generated questions, detailed AI explanations,
 ## 🖥️ UI Preview
 
 <p align="center">
-  <img src="AptifyAi_Dashboard.png" alt="AptifyAI Dashboard" width="85%" style="border-radius:16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+  <img src="client/public/AptifyAi_Dashboard.png" alt="AptifyAI Dashboard" width="85%" style="border-radius:16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
 </p>
-
 ---
 
 ## ✨ Key Features
