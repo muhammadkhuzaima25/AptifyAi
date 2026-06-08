@@ -1,175 +1,270 @@
-# AptifyAI
+<p align="center">
+  <img alt="AptifyAI — AI-Powered Aptitude Test Trainer" src="./client/public/favicon.svg" width="120" style="border-radius: 20px;">
+</p>
 
-> **AI-Powered Aptitude Training. Track Every Improvement.**
+<h1 align="center">Aptify<span style="color:#84CC16">AI</span></h1>
 
-A production-grade MERN stack web app for Pakistani students preparing for NTS, GAT, MDCAT and CSS/PMS. AI generates fresh MCQs on demand, evaluates answers with detailed explanations, detects weak topics and visualizes the user's improvement arc over time.
+<p align="center">
+  <strong>AI-Powered Aptitude Training. Track Every Improvement.</strong>
+</p>
 
-Brand: **AptifyAI** — "Aptify" in primary text color, "AI" in lime accent (#84CC16). Syne 800 weight, letter-spacing -0.03em, used everywhere the brand appears.
+<p align="center">
+  <a href="https://aptifyai.vercel.app"><img src="https://img.shields.io/badge/🚀_Live_Demo-aptifyai.vercel.app-84CC16?style=for-the-badge&labelColor=0f172a" alt="Live Demo"></a>
+</p>
 
----
+<p align="center">
+  <img src="https://img.shields.io/badge/React-18-84CC16?style=flat&logo=react&labelColor=0f172a">
+  <img src="https://img.shields.io/badge/Node.js-20-339933?style=flat&logo=nodedotjs&labelColor=0f172a">
+  <img src="https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat&logo=mongodb&labelColor=0f172a">
+  <img src="https://img.shields.io/badge/OpenRouter-AI-84CC16?style=flat&labelColor=0f172a">
+  <img src="https://img.shields.io/badge/Express.js-5-000000?style=flat&logo=express&labelColor=0f172a">
+  <img src="https://img.shields.io/badge/Deployed-Vercel-000000?style=flat&logo=vercel&labelColor=0f172a">
+</p>
 
-## Tech Stack
-
-- **Frontend:** React 18 + Vite, React Router v6, Axios, custom CSS (no Tailwind, no Bootstrap, no system-ui)
-- **Backend:** Node.js + Express, MongoDB + Mongoose, JWT, bcrypt
-- **Design system:** Syne (headings, 700/800 weight), DM Sans (body, 300/400/500), Space Mono (scores, labels, badges, counters, monospace)
-- **Palette:** `#F8FAFC` background · `#0F172A` dark · `#84CC16` lime accent · `#64748B` secondary
-- **Themes:** Full light + dark mode via `data-theme` attribute, persisted in localStorage
-
----
-
-## Folder Structure
-
-```
-AptifyAI/
-├── client/
-│   ├── public/
-│   │   └── favicon.svg
-│   ├── src/
-│   │   ├── components/    (Navbar, Footer, Sidebar, Logo, Modal, Reveal, CountUp, BarChart, Spinner, AuthShell, ProtectedRoute, ThemeToggle, DashboardLayout, ProgressBar)
-│   │   ├── context/       (AuthContext, ToastContext, ThemeContext)
-│   │   ├── hooks/         (useAnimations — scroll reveal + count up)
-│   │   ├── pages/         (Landing, Register, Login, Dashboard, StartExam, ExamRoom, Results, Progress, History, Profile, NotFound)
-│   │   ├── utils/         (api.js axios instance, helpers.js)
-│   │   ├── index.css      (global design system + theme variables)
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-└── server/
-    ├── models/            (User, Session, Progress)
-    ├── routes/            (authRoutes, examRoutes, progressRoutes)
-    ├── controllers/       (authController, examController, progressController)
-    ├── middleware/        (authMiddleware, errorMiddleware)
-├── utils/             (questionEngine.js, examHelpers.js, generateToken.js)
-│   ├── server.js
-│   └── package.json
-```
+<br>
 
 ---
 
-## Setup
+## 📌 Overview
 
-### 1. Prerequisites
+**AptifyAI** is a production-grade, full-stack MERN web application built for Pakistani students preparing for **NTS, GAT, MDCAT, and CSS/PMS** exams.
 
+Unlike static question banks that repeat the same MCQs, AptifyAI uses **OpenRouter AI** to generate completely fresh, unique aptitude questions every single session. After each exam, AI evaluates your answers, explains every mistake in detail, detects your weak topics, and visualizes your improvement arc over time — so you always know exactly where you stand and what to fix next.
+
+---
+
+## ❗ Problem Statement
+
+Pakistani students preparing for NTS, GAT, MDCAT and CSS/PMS face three core problems:
+
+- **Repeated question banks** — every platform recycles the same MCQs
+- **No feedback** — you see your score but never understand *why* you got it wrong
+- **No progress tracking** — no way to know if you're actually improving session by session
+
+AptifyAI solves all three with AI-generated questions, detailed AI explanations, and a full analytics dashboard that tracks your growth arc.
+
+---
+
+## 🖥️ UI Preview
+
+<p align="center">
+  <img src="https://aptifyai.vercel.app/preview.png" alt="AptifyAI Dashboard" width="85%" style="border-radius:16px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
+</p>
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🧠 **AI Live Question Generation** | Fresh unique MCQs every session — never repeated, powered by OpenRouter |
+| ⏱️ **Custom Duration Selection** | Pick 5, 10, 15, 20, or 30 minutes — question count adjusts automatically |
+| 📊 **Progress Analytics Dashboard** | Visual improvement arc across all sessions with bar charts and trend graphs |
+| ⚡ **Real-Time Answer Scoring** | Clarity, depth, confidence and accuracy scored after every session |
+| 🎯 **Weak Topic Detection** | AI analyzes patterns across sessions and flags exactly what to study next |
+| 🏆 **Streak & Session History** | Daily streak tracking + full breakdown of every past session |
+| 🌙 **Dark & Light Mode** | Full theme support — persisted in localStorage, zero hardcoded colors |
+| 🔐 **JWT Authentication** | Secure register and login with bcrypt password hashing |
+
+---
+
+## 🎯 Supported Exams
+
+| Exam | Topics Covered |
+|---|---|
+| **NTS** | Maths, English, Analytical, GK, IQ |
+| **GAT** | Verbal, Quantitative, Analytical |
+| **MDCAT** | Biology, Chemistry, Physics, English |
+| **CSS/PMS** | Current Affairs, English, General Knowledge, Pakistan Affairs |
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+- React 18 + Vite
+- React Router v6
+- Axios
+- Custom CSS with CSS variables (no Tailwind, no Bootstrap)
+- Fonts: Syne + DM Sans + Space Mono
+
+**Backend**
+- Node.js + Express.js
+- MongoDB Atlas + Mongoose
+- JWT Authentication
+- bcrypt password hashing
+- express-rate-limit
+
+**AI**
+- OpenRouter API — `meta-llama/llama-3.3-70b-instruct`
+- Live question generation + answer evaluation + weak topic detection
+
+---
+
+## 🔒 Rate Limiting
+
+All endpoints are rate-limited to prevent API abuse:
+
+| Scope | Limit | Status |
+|---|---|---|
+| All `/api` routes | 100 requests per 15 min | 429 |
+| `/api/auth` | 10 requests per 15 min | 429 |
+| `/api/exam/generate` | 10 requests per hour | 429 |
+
+---
+
+## ⚙️ How to Run Locally
+
+### Prerequisites
 - Node.js 18+
-- MongoDB running locally (or a MongoDB Atlas URI)
-- Google AI Studio (Gemini) API key (optional — server falls back to a curated question bank)
+- MongoDB Atlas account (free tier works)
+- OpenRouter API key (free tier available)
 
-### 2. Backend
+### 1. Clone the repo
+```bash
+git clone https://github.com/muhammadkhuzaima25/aptifyai.git
+cd aptifyai
+```
 
+### 2. Backend setup
 ```bash
 cd server
 npm install
 ```
 
-Create your `.env` file (a starter is provided):
-
+Create `server/.env`:
 ```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/aptifyai
-JWT_SECRET=replace_with_a_long_random_string
-GEMINI_API_KEY=your_google_ai_studio_key
-GEMINI_MODEL=gemini-2.0-flash
+MONGO_URI=mongodb+srv://...
+JWT_SECRET=your_long_random_secret
+OPENROUTER_API_KEY=sk-or-...
+OPENROUTER_MODEL=meta-llama/llama-3.3-70b-instruct:free
 CLIENT_URL=http://localhost:5173
 ```
 
-Start the server:
-
+Start backend:
 ```bash
 npm run dev
 ```
 
-The API runs on `http://localhost:5000`. Health check: `GET /api/health`.
-
-### 3. Frontend
-
+### 3. Frontend setup
 ```bash
 cd client
 npm install
+```
+
+Create `client/.env`:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Start frontend:
+```bash
 npm run dev
 ```
 
-The app runs on `http://localhost:5173`. Vite proxies `/api/*` to the backend automatically.
+Open **http://localhost:5173** in your browser.
 
 ---
 
-## API Endpoints
+## 📁 Project Structure
 
-### Auth — `/api/auth`
-| Method | Path           | Description                          |
-| ------ | -------------- | ------------------------------------ |
-| POST   | /register      | Create new account                   |
-| POST   | /login         | Login, returns JWT                   |
-| GET    | /me            | Get current user (protected)         |
-| PUT    | /profile       | Update name / target exam            |
-| PUT    | /password      | Change password                      |
-| DELETE | /profile       | Delete account + all sessions        |
-
-### Exam — `/api/exam`
-| Method | Path           | Description                                                  |
-| ------ | -------------- | ------------------------------------------------------------ |
-| POST   | /generate      | Generate fresh MCQs for a topic/difficulty/duration       |
-| POST   | /submit        | Submit answers, get scores + AI explanations + weak topics   |
-| GET    | /history       | List all sessions for the current user                       |
-| GET    | /history/:id   | Get a single session's full breakdown                        |
-
-### Progress — `/api/progress`
-| Method | Path           | Description                                          |
-| ------ | -------------- | ---------------------------------------------------- |
-| GET    | /dashboard     | Stats, score chart, weak topics, recent sessions     |
-| GET    | /streak        | Current streak                                       |
-| GET    | /full          | Full analytics — calendar, AI insight, topic perf    |
-
----
-
-## Frontend Pages
-
-| Route          | Description                                                                 |
-| -------------- | --------------------------------------------------------------------------- |
-| `/`            | Landing — hero, stats, how-it-works, features, duration preview, analytics, testimonials, FAQ, CTA |
-| `/register`    | Sign-up with name, email, password, target exam                             |
-| `/login`       | Login form                                                                  |
-| `/dashboard`   | Welcome, 4 stat tiles, score chart, weak topics, recent sessions, CTA      |
-| `/exam/start`  | 4-step wizard: exam → topic → difficulty → duration                        |
-| `/exam/room`   | Focused exam UI with countdown timer and live progress                     |
-| `/exam/results`| Big overall score + accuracy/speed, question-by-question review, AI tips    |
-| `/progress`    | Full analytics: line/bar chart, per-topic, 90-day streak calendar, AI insight |
-| `/history`     | All sessions table with exam/date filters and detailed modal                |
-| `/profile`     | Edit name/exam, change password, account stats, delete account              |
-
----
-
-## Design Notes
-
-- **Brand:** "AptifyAI" — Aptify in `var(--text)`, AI in `var(--lime)`, Syne 800 weight, letter-spacing -0.03em, applied in navbar, footer, login, register, dashboard sidebar and browser title.
-- **Fonts:** Syne 700/800 for h1–h4, DM Sans 300/400/500 for body, Space Mono for all scores, stat numbers, badge labels and counters. Imported from Google Fonts via the exact spec URL. No system-ui, no Inter, no Roboto, no Arial anywhere.
-- **Light + Dark mode:** `ThemeContext` manages state, persists to `localStorage`, applies `data-theme` to `documentElement`. `ThemeToggle` shows 🌙 in light mode and ☀️ in dark mode. Every background, text and border color uses CSS variables — zero hardcoded colors. Smooth 0.3s ease transition on background, color and border.
-- **Text layout:** All section headings capped at 700px, all body paragraphs capped at 600px. Headings have letter-spacing -0.02em and line-height 1.1; paragraphs have line-height 1.6. `text-size-adjust: 100%` set globally. No `transform: scaleX` or text-stretching anywhere.
-- **Free for everyone:** No pricing, no paywalls, no tier restrictions. All features are fully unlocked for every account.
-- **Smooth scroll reveal** via `IntersectionObserver` (custom hook `useScrollReveal`).
-- **Count-up animation** for landing stats (`useCountUp`).
-- **Responsive everywhere:** mobile hamburger menu, dashboard bottom nav on mobile, breakpoints throughout.
-- **Accessibility:** keyboard-focusable buttons, `aria-label`s on icon buttons, real form labels.
-
----
-
-## Production Build
-
-```bash
-# Frontend
-cd client && npm run build
-# Outputs to client/dist — serve behind any static host (Vercel, Netlify, Nginx).
-
-# Backend
-cd server && npm start
+```
+AptifyAI/
+├── client/                  # React + Vite Frontend
+│   ├── public/
+│   ├── src/
+│   │   ├── components/      # Navbar, Footer, Sidebar, ThemeToggle, etc.
+│   │   ├── context/         # AuthContext, ThemeContext, ToastContext
+│   │   ├── hooks/           # useAnimations, useScrollReveal
+│   │   ├── pages/           # Landing, Dashboard, StartExam, ExamRoom, Results, Progress, History, Profile
+│   │   ├── utils/           # api.js, helpers.js
+│   │   ├── index.css        # Design system + CSS variables
+│   │   └── App.jsx
+│   └── vite.config.js
+│
+└── server/                  # Node + Express Backend
+    ├── controllers/         # authController, examController, progressController
+    ├── middleware/          # authMiddleware, errorMiddleware
+    ├── models/              # User, Session, Progress
+    ├── routes/              # authRoutes, examRoutes, progressRoutes
+    ├── utils/               # openai.js, examHelpers.js, generateToken.js
+    └── server.js
 ```
 
-For deployment, point `CLIENT_URL` in `.env` to your frontend's domain and update Vite's proxy or your reverse proxy accordingly.
+---
+
+## 🌐 API Endpoints
+
+### Auth — `/api/auth`
+| Method | Path | Description |
+|---|---|---|
+| POST | /register | Create new account |
+| POST | /login | Login, returns JWT |
+| GET | /me | Get current user (protected) |
+| PUT | /profile | Update name / target exam |
+| PUT | /password | Change password |
+| DELETE | /profile | Delete account + all sessions |
+
+### Exam — `/api/exam`
+| Method | Path | Description |
+|---|---|---|
+| POST | /generate | Generate fresh AI MCQs |
+| POST | /submit | Submit answers, get scores + explanations |
+| GET | /history | List all sessions |
+| GET | /history/:id | Get single session breakdown |
+
+### Progress — `/api/progress`
+| Method | Path | Description |
+|---|---|---|
+| GET | /dashboard | Stats, chart, weak topics, recent sessions |
+| GET | /streak | Current streak data |
+| GET | /full | Full analytics — calendar, AI insight, topic performance |
 
 ---
 
-## License
+## 🔮 Future Work
 
-All Rights Reserved — see [LICENSE](./LICENSE) for details.
+- [ ] Voice answer support — speak your answers instead of typing
+- [ ] Resume upload → personalized exam questions based on your CV
+- [ ] Leaderboard — compete with other students
+- [ ] PDF result export — share your progress report
+- [ ] Multi-language support — Urdu interface
+- [ ] Mobile app — React Native version
+
+---
+
+## 🔍 SEO Keywords
+
+`NTS preparation online` · `GAT practice test` · `MDCAT MCQs AI` · `CSS PMS preparation` · `aptitude test Pakistan` · `AI generated MCQs` · `NTS test preparation app` · `GAT test online practice` · `MDCAT biology questions` · `CSS general knowledge MCQs` · `Pakistani exam preparation` · `aptitude test trainer` · `AI quiz generator Pakistan` · `MERN stack AI project` · `progress tracking exam app` · `weak topic detection AI` · `OpenRouter AI app` · `React exam app` · `Node.js quiz API` · `MongoDB exam history` · `Pakistani student app` · `free aptitude test online` · `AI powered MCQ generator` · `NTS GAT MDCAT CSS practice` · `exam improvement tracker`
+
+---
+
+## 👤 Author
+
+**Muhammad Khuzaima**  
+Graphic Designer · Logo & Brand Identity Expert · UI/UX Designer · MERN Stack Developer
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat&logo=linkedin&labelColor=0f172a)](https://www.linkedin.com/in/muhammad-khuzaima-991a08313)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-aptifyai.vercel.app-84CC16?style=flat&labelColor=0f172a)](https://aptifyai.vercel.app)
+
+---
+
+## 📄 License
+
+**All Rights Reserved.** Copyright © 2026 Muhammad Khuzaima.  
+This project is for **viewing and evaluation only.** See [LICENSE](./LICENSE) for full terms.
+
+---
+
+<p align="center">
+  <strong>⭐ If AptifyAI helped your exam prep or impressed you — please leave a star!</strong><br>
+  <sub>Built from scratch with real debugging, designing, and grinding.<br>
+  A star costs nothing but means everything. 🙏</sub>
+</p>
+
+<p align="center">
+  <a href="https://github.com/muhammadkhuzaima25/aptifyai">
+    <img src="https://img.shields.io/badge/⭐_Star_this_repo-Show_some_love-84CC16?style=for-the-badge&labelColor=0f172a" alt="Star this repo">
+  </a>
+</p>
