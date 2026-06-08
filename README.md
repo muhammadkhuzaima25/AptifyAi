@@ -35,14 +35,14 @@ Unlike static question banks that repeat the same MCQs, AptifyAI uses **OpenRout
 
 ## ❗ Problem Statement
 
-Pakistani students preparing for NTS, GAT, MDCAT and CSS/PMS face three core problems:
+Pakistani students preparing for NTS, GAT, MDCAT and CSS/PMS face four core problems:
 
 - **Repeated question banks** — every platform recycles the same MCQs
 - **No feedback** — you see your score but never understand *why* you got it wrong
 - **No progress tracking** — no way to know if you're actually improving session by session
 - **API abuse & unfair usage** — most free tools get abused by bots and heavy users, degrading experience for genuine students. AptifyAI enforces smart rate limiting so every real student gets a fair, consistent experience
 
-AptifyAI solves all three with AI-generated questions, detailed AI explanations, and a full analytics dashboard that tracks your growth arc.
+AptifyAI solves all four with AI-generated questions, detailed AI explanations, and a full analytics dashboard that tracks your growth arc.
 
 ---
 
